@@ -98,6 +98,31 @@
   .sys-pn { display: flex; justify-content: space-between; gap: 14px; margin-top: 40px; }
   .sys-pn a { color: var(--accent-bright); text-decoration: none; font: 700 13px/1 "Barlow", "Helvetica Neue", Arial, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; }
   .sys-pn a:hover { text-decoration: underline; }
+  .ab-soft__frame {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #0d0f16;
+    max-width: 860px;
+  }
+  .ab-soft__chrome {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 14px;
+    background: #10131c;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .ab-soft__chrome i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.16); }
+  .ab-soft__chrome span {
+    margin-left: 10px;
+    font: 500 12px/1 "Courier New", monospace;
+    color: var(--text-dim);
+  }
+  .ab-soft__frame img { display: block; width: 100%; height: auto; }
+  .ab-soft__note { margin-top: 16px; color: var(--text-dim); font-size: 15px; }
+  .ab-soft__note a { color: var(--accent-bright); text-decoration: none; }
+  .ab-soft__note a:hover { text-decoration: underline; }
   .sys-foot { border-top: 1px solid rgba(255, 255, 255, 0.08); padding: 34px 0 44px; color: var(--text-dim); font-size: 14px; }
   .sys-foot .se-container { display: flex; flex-wrap: wrap; gap: 10px 26px; align-items: center; }
   .sys-foot a { color: var(--accent-bright); text-decoration: none; }
@@ -147,6 +172,20 @@
           <div class="deliverable-item"><span class="check" aria-hidden="true">&#10003;</span><p>Monthly performance analytics</p></div>
         </div>
         <p class="sys-entry">Growth Mentorship&trade; is where every partnership begins. The rest get implemented once mentoring finds the gap.</p>
+      </div>
+    </section>
+
+    <section class="se-section ab-soft" style="padding-top:0;">
+      <div class="se-container">
+        <div class="se-head">
+          <h2 class="se-heading" style="font-size:clamp(26px,3vw,38px);">The software behind it</h2>
+          <p class="sys-lede" style="margin-top:14px;">Authority Builder&trade; content is produced on Stradigi&rsquo;s own software: keyword-targeted articles with matching social posts, built for each client and reviewed before anything is published.</p>
+        </div>
+        <figure class="ab-soft__frame">
+          <div class="ab-soft__chrome" aria-hidden="true"><i></i><i></i><i></i><span>stradigi-software.replit.app</span></div>
+          <img src="../assets/img/ab-software.jpg" alt="The Authority Builder software sign-in screen" width="1440" height="900" decoding="async" loading="lazy">
+        </figure>
+        <p class="ab-soft__note">Working with Stradigi already? <a href="https://stradigi-software.replit.app/" target="_blank" rel="noopener">Operator sign-in &rarr;</a></p>
       </div>
     </section>
 
