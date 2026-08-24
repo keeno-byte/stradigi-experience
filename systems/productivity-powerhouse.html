@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" class="no-gate">
+<head>
+<script>document.documentElement.classList.add("js");</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Productivity Powerhouse™ &mdash; Stradigi</title>
+<meta name="description" content="Simplify your tech. Maximize your time. One of the six systems in the Stradigi Success System™.">
+<meta name="theme-color" content="#060608">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../site.css">
+<link rel="stylesheet" href="../lab-bands.css">
+<link rel="stylesheet" href="../lab-wow.css">
+<style>
+  /* System detail page (2026-08-23): structure ported from the main
+     site's systems/productivity-powerhouse.html, re-set in the lab's dark stage. */
+  html { scroll-behavior: smooth; }
+  main { padding-top: var(--nav-h, 68px); }
+  .sys-hero {
+    position: relative;
+    padding: clamp(72px, 12vh, 130px) 0 clamp(56px, 9vh, 96px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+  }
+  .sys-hero .se-container { position: relative; z-index: 2; }
+  .sys-kicker {
+    font: 600 12px/1 "Barlow", "Helvetica Neue", Arial, sans-serif;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent-bright);
+  }
+  .sys-hero h1 {
+    margin-top: 16px;
+    font-size: clamp(42px, 6vw, 76px);
+    line-height: 0.98;
+    color: var(--text);
+    max-width: 14ch;
+  }
+  .sys-lede { margin-top: 18px; font-size: clamp(17px, 1.6vw, 21px); line-height: 1.5; color: var(--text-dim); max-width: 44ch; }
+  .sys-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
+  .deliverables { display: grid; gap: 12px; }
+  @media (min-width: 768px) { .deliverables { grid-template-columns: 1fr 1fr; } }
+  .deliverable-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 18px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    background: var(--panel);
+    border-radius: 10px;
+  }
+  .deliverable-item .check {
+    flex: none;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(63, 190, 115, 0.14);
+    color: #5fd694;
+    font-size: 13px;
+  }
+  .deliverable-item p { color: var(--text); font-size: 16.5px; line-height: 1.5; }
+  .sys-entry { margin-top: 26px; color: var(--text-dim); font-size: 15.5px; max-width: 52ch; }
+  .other-systems ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  @media (min-width: 768px) { .other-systems ul { grid-template-columns: repeat(3, 1fr); } }
+  .other-systems a {
+    display: block;
+    padding: 16px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--panel);
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text);
+    font: 600 15px/1.3 "Barlow", "Helvetica Neue", Arial, sans-serif;
+    transition: border-color 0.25s ease, background 0.25s ease;
+  }
+  .other-systems a:hover { border-color: var(--accent-bright); background: rgba(78, 140, 232, 0.08); }
+  .sys-pn { display: flex; justify-content: space-between; gap: 14px; margin-top: 40px; }
+  .sys-pn a { color: var(--accent-bright); text-decoration: none; font: 700 13px/1 "Barlow", "Helvetica Neue", Arial, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; }
+  .sys-pn a:hover { text-decoration: underline; }
+  .sys-foot { border-top: 1px solid rgba(255, 255, 255, 0.08); padding: 34px 0 44px; color: var(--text-dim); font-size: 14px; }
+  .sys-foot .se-container { display: flex; flex-wrap: wrap; gap: 10px 26px; align-items: center; }
+  .sys-foot a { color: var(--accent-bright); text-decoration: none; }
+</style>
+</head>
+<body>
+  <header class="site-nav" id="site-nav">
+    <div class="site-nav__inner">
+      <a class="site-nav__logo" href="../index.html" aria-label="Stradigi, back to the experience">
+        <img src="../assets/logo/stradigi-logo.png" alt="Stradigi" width="718" height="347">
+      </a>
+      <nav class="site-nav__links" aria-label="Primary">
+        <a href="../index.html">Experience</a>
+        <a href="../index.html#systems" aria-current="page">Systems</a>
+        <a href="../index.html#serve">Who we help</a>
+        <a href="../index.html#pricing">Pricing</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+      <a class="site-nav__cta" href="../index.html#contact" data-cursor-label="BOOK">Book a free session</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="ambient sys-hero" data-aura="blue">
+      <div class="se-container">
+        <p class="sys-kicker">System 06 / 06 &middot; The Stradigi Success System&trade;</p>
+        <h1 class="se-heading">Productivity Powerhouse&trade;</h1>
+        <p class="sys-lede">Simplify your tech. Maximize your time.</p>
+        <div class="sys-cta">
+          <a class="se-btn" href="../index.html#contact" data-cursor-label="BOOK">Book a free session</a>
+          <a class="se-link" href="../index.html#systems" style="align-self:center;">All six systems &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="se-section">
+      <div class="se-container">
+        <div class="se-head">
+          <span class="se-index">/ 06</span>
+          <h2 class="se-heading">What&rsquo;s included</h2>
+        </div>
+        <div class="deliverables">
+          <div class="deliverable-item"><span class="check" aria-hidden="true">&#10003;</span><p>Google Workspace &amp; Office365 management</p></div>
+          <div class="deliverable-item"><span class="check" aria-hidden="true">&#10003;</span><p>GoDaddy domain management</p></div>
+          <div class="deliverable-item"><span class="check" aria-hidden="true">&#10003;</span><p>WordPress CMS management (updates, backups, plugins)</p></div>
+          <div class="deliverable-item"><span class="check" aria-hidden="true">&#10003;</span><p>Email &amp; calendar integration</p></div>
+          <div class="deliverable-item"><span class="check" aria-hidden="true">&#10003;</span><p>Tech support &amp; troubleshooting</p></div>
+        </div>
+        <p class="sys-entry">Growth Mentorship&trade; is where every partnership begins. The rest get implemented once mentoring finds the gap.</p>
+      </div>
+    </section>
+
+    <section class="se-section other-systems" style="padding-top:0;">
+      <div class="se-container">
+        <div class="se-head">
+          <h2 class="se-heading" style="font-size:clamp(26px,3vw,38px);">The other systems</h2>
+        </div>
+        <ul>
+          <li><a href="growth-mentorship.html">Growth Mentorship&trade;</a></li>
+          <li><a href="smart-automation.html">Smart Automation&trade;</a></li>
+          <li><a href="authority-builder.html">Authority Builder&trade;</a></li>
+          <li><a href="business-engine.html">Business Engine&trade;</a></li>
+          <li><a href="financial-clarity-system.html">Financial Clarity System&trade;</a></li>
+        </ul>
+        <div class="sys-pn">
+          <a href="financial-clarity-system.html">&larr; Financial Clarity System&trade;</a>
+          <a href="growth-mentorship.html">Growth Mentorship&trade; &rarr;</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sys-foot">
+    <div class="se-container">
+      <span>&copy; 2026 Stradigi, LLC</span>
+      <span>2400 Ansys Dr, Suite 102, Canonsburg PA 15317</span>
+      <a href="tel:+17242097020">724-209-7020</a>
+      <span>Mon&ndash;Sun, 9:00 am&ndash;5:00 pm</span>
+      <a href="../index.html">Back to the experience &rarr;</a>
+    </div>
+  </footer>
+
+  <script src="../ambience.js"></script>
+  <script src="../lab-cursor.js"></script>
+</body>
+</html>

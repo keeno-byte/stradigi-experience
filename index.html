@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>document.documentElement.classList.add("js");</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STRADIGI // THE EXPERIENCE</title>
+<meta name="description" content="One Mentor. Six Systems. Unlimited Growth. Watch the Stradigi Success System&trade; come apart one system at a time: Growth Mentorship&trade;, Smart Automation&trade;, Authority Builder&trade;, Business Engine&trade;, Financial Clarity System&trade;, Productivity Powerhouse&trade;. Canonsburg, PA.">
+<meta name="theme-color" content="#060608">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="256x256" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Stradigi: One Mentor. Six Systems. Unlimited Growth.">
+<meta property="og:description" content="Watch the Stradigi Success System&trade; come apart, one system at a time. Small-business mentorship and systems from Canonsburg, PA.">
+<meta property="og:image" content="https://keeno-byte.github.io/stradigi-experience/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Stradigi: One Mentor. Six Systems. Unlimited Growth.">
+<meta name="twitter:image" content="https://keeno-byte.github.io/stradigi-experience/assets/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="lab-bands.css">
+<link rel="stylesheet" href="lab-wow.css">
+<style>
+  .veil {
+    position: fixed; inset: 0; z-index: 100;
+    display: grid; place-items: center;
+    background: #060608; color: #e9eaee;
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.7s;
+  }
+  html:not(.js) .veil, .veil.is-done { opacity: 0; visibility: hidden; pointer-events: none; }
+  .veil__inner { display: grid; justify-items: center; gap: 1.1rem; transform: translateY(0); transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+  .veil.is-done .veil__inner { transform: translateY(-14px); }
+  .veil__mark { width: clamp(150px, 22vw, 230px); height: auto; filter: brightness(0) invert(1); opacity: 0; animation: veil-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.08s forwards; }
+  .veil__line { font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; font-size: clamp(13px, 1.4vw, 16px); color: #a3a9b6; opacity: 0; transition: opacity 0.6s ease 0.1s; }
+  html.fonts-ready .veil__line { opacity: 1; }
+  .veil__bar { position: relative; width: clamp(150px, 22vw, 230px); height: 1px; background: rgba(255,255,255,0.12); overflow: hidden; }
+  .veil__bar i { position: absolute; inset: 0; background: #4e8ce8; transform-origin: left center; transform: scaleX(0); transition: transform 0.35s ease-out; }
+  @keyframes veil-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    .veil { transition: opacity 0.25s linear, visibility 0s linear 0.25s; }
+    .veil__inner, .veil.is-done .veil__inner { transform: none; transition: none; }
+    .veil__mark { animation: none; opacity: 1; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="veil" id="veil" aria-hidden="true">
+    <div class="veil__inner">
+      <img class="veil__mark" src="assets/logo/stradigi-logo.png" alt="" width="718" height="347">
+      <p class="veil__line">One Mentor. Six Systems.</p>
+      <div class="veil__bar"><i id="veil-fill"></i></div>
+    </div>
+  </div>
+
+  <header class="site-nav" id="site-nav">
+    <div class="site-nav__inner">
+      <a class="site-nav__logo" href="#" aria-label="Stradigi, back to top">
+        <img src="assets/logo/stradigi-logo.png" alt="Stradigi" width="718" height="347">
+      </a>
+      <nav class="site-nav__links" aria-label="Primary">
+        <a href="#systems">Systems</a>
+        <a href="#serve">Who we help</a>
+        <a href="#about">About</a>
+        <a href="#pricing">Pricing</a>
+        <a href="https://stradigi.io/blog/" target="_blank" rel="noopener">Blog</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="site-nav__cta" href="#contact" data-cursor-label="BOOK">Book a free session</a>
+      <button class="site-nav__toggle" id="site-nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav-mobile" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="site-nav__mobile" id="site-nav-mobile" aria-label="Primary, mobile">
+      <a href="#systems">Systems</a>
+      <a href="#serve">Who we help</a>
+      <a href="#about">About</a>
+      <a href="#pricing">Pricing</a>
+      <a href="https://stradigi.io/blog/" target="_blank" rel="noopener">Blog</a>
+      <a href="#contact">Contact</a>
+      <a class="site-nav__cta" href="#contact" data-cursor-label="BOOK">Book a free session</a>
+    </nav>
+  </header>
+
+  <button class="intro-skip" id="skip-btn" type="button" data-cursor-label="SKIP">
+    <span class="intro-skip__ring" aria-hidden="true"></span>
+    <span class="intro-skip__label">Skip the intro</span>
+    <span class="intro-skip__arrow" aria-hidden="true">&rarr;</span>
+  </button>
+
+  <div class="hero-reveal" id="hero-reveal">
+    <div class="hero-reveal__chrome"><span class="chrome-label">EN</span></div>
+
+    <video class="hero-reveal__video" id="ambient-video" muted playsinline loop preload="auto" hidden></video>
+    <video class="hero-reveal__video hero-reveal__video--reveal" id="reveal-video" muted playsinline preload="auto" hidden></video>
+    <canvas class="hero-reveal__ambient" id="ambient-canvas"></canvas>
+
+    <div class="hero-reveal__titles">
+      <h2>You started your business for freedom<br>not to become your own employee.</h2>
+    </div>
+
+    <aside class="hero-reveal__aside hero-reveal__aside--what" aria-label="What Stradigi is">
+      <span class="aside__kicker">Stradigi &middot; Canonsburg, PA</span>
+      <h3>One mentor.<br>Six systems.</h3>
+      <p>Six trademarked systems that run a small business like a big one &mdash; built by founder Jason&nbsp;Tapolci, and installed one at a time.</p>
+    </aside>
+    <aside class="hero-reveal__aside hero-reveal__aside--systems" aria-label="The six systems">
+      <span class="aside__kicker">The six systems</span>
+      <ol class="aside__systems">
+        <li><strong>Growth Mentorship&trade;</strong><span>Real-world guidance and accountability to grow strategically.</span></li>
+        <li><strong>Smart Automation&trade;</strong><span>Save time and grow faster with AI-powered automation.</span></li>
+        <li><strong>Authority Builder&trade;</strong><span>Be the business everyone finds and trusts online.</span></li>
+        <li><strong>Business Engine&trade;</strong><span>Your all-in-one automation and CRM system.</span></li>
+        <li><strong>Financial Clarity System&trade;</strong><span>Know your numbers. Grow your business.</span></li>
+        <li><strong>Productivity Powerhouse&trade;</strong><span>Simplify your tech. Maximize your time.</span></li>
+      </ol>
+    </aside>
+
+    <div class="hero-reveal__controls">
+      <button class="c-button" id="start-btn" data-cursor-label="START" disabled>START EXPERIENCE</button>
+      <div class="hero-reveal__top-actions" id="top-actions" hidden>
+        <button class="chip" id="mute-btn" aria-pressed="false">MUTE</button>
+      </div>
+    </div>
+
+    <section class="hero-reveal__progress" id="progress-section">
+      <div class="hero-reveal__progress-info">
+        <span class="hero-reveal__progress-label" id="scramble-label">[</span>
+        <span class="hero-reveal__progress-value" id="progress-value">0%</span>
+      </div>
+      <div class="hero-reveal__progress-track"><div class="hero-reveal__progress-fill" id="progress-fill"></div></div>
+    </section>
+  </div>
+
+  <main class="home-page">
+    <div class="scrolly" id="scrolly">
+      <section class="scrolly__content" id="scrolly-content">
+
+        <div class="scrolly__placeholder first-frame" id="first-frame"></div>
+        <div class="scrolly__placeholder last-frame" id="last-frame"></div>
+        <canvas class="scrolly__canvas" id="seq-canvas"></canvas>
+        <canvas class="scrolly__spot" id="spot-canvas" aria-hidden="true"></canvas>
+
+        <article class="slide slide--hero" data-slide="0">
+          <div class="hero-top">
+            <h1>One Mentor. Six Systems.<br>Unlimited Growth.</h1>
+            <p class="slide__lede">Six trademarked systems that run a small business like a big one. Scroll, and watch the machine come apart, one system at a time.</p>
+          </div>
+          <div class="badges">
+            <div class="badge"><strong>Six</strong><span>trademarked systems</span></div>
+            <div class="badge"><strong>One</strong><span>mentor who built them</span></div>
+            <div class="badge"><strong>Canonsburg, PA</strong><span>born and based</span></div>
+          </div>
+        </article>
+
+        <article class="slide slide--system" data-slide="1">
+          <div class="slide__panel">
+            <span class="slide__kicker">System 01 / 06</span>
+            <h2>Growth<br>Mentorship&trade;</h2>
+            <p class="slide__tag">Real-world guidance and accountability to grow strategically.</p>
+            <p class="slide__why">Most owners do not lack effort. They lack an outside operator who has seen the pattern before and will hold them to a plan. This is where everything starts: the assessment decides which systems you actually need, and in what order &mdash; so you never buy a tool you will not use.</p>
+            <ul class="slide__list">
+              <li>Two to three free mentoring sessions</li>
+              <li>Full business health assessment</li>
+              <li>Personalized growth roadmap</li>
+              <li>Ongoing mentorship and accountability sessions (optional continuation)</li>
+              <li>Access to Stradigi&rsquo;s systems and automation tools</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="slide slide--system" data-slide="2">
+          <div class="slide__panel">
+            <span class="slide__kicker">System 02 / 06</span>
+            <h2>Smart<br>Automation&trade;</h2>
+            <p class="slide__tag">Save time and grow faster with AI-powered automation.</p>
+            <p class="slide__why">Every missed call, unanswered message and forgotten follow-up is a lead you already paid for. Automation answers, books, reminds and follows up while you are on a roof or with a patient &mdash; the routine moves without you, and you step in only for the conversations that need a person.</p>
+            <ul class="slide__list">
+              <li>Chat &amp; voice automation</li>
+              <li>Social media automation</li>
+              <li>Appointment scheduling with auto reminders</li>
+              <li>Lead follow-up sequences</li>
+              <li>Reputation automation (review requests + response management)</li>
+              <li>CRM integration</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="slide slide--system" data-slide="3">
+          <div class="slide__panel">
+            <span class="slide__kicker">System 03 / 06</span>
+            <h2>Authority<br>Builder&trade;</h2>
+            <p class="slide__tag">Be the business everyone finds and trusts online.</p>
+            <p class="slide__why">When someone in Washington County searches for what you do, the business that shows up first with real reviews gets the call. Authority is built the slow, compounding way &mdash; listings that agree with each other, content that answers what people actually type, a review stream that keeps moving &mdash; and measured every month.</p>
+            <ul class="slide__list">
+              <li>Local SEO optimization (keyword research, on-page, Google Business Profile)</li>
+              <li>Review &amp; reputation management</li>
+              <li>Content marketing (blog + social aligned to target keywords)</li>
+              <li>Online listings &amp; citations (NAP consistency)</li>
+              <li>Monthly performance analytics</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="slide slide--system" data-slide="4">
+          <div class="slide__panel">
+            <span class="slide__kicker">System 04 / 06</span>
+            <h2>Business<br>Engine&trade;</h2>
+            <p class="slide__tag">Your all-in-one automation and CRM system.</p>
+            <p class="slide__why">A lead that lives in a text thread on your phone is not in a pipeline &mdash; it is a memory. The engine puts every conversation, stage and follow-up in one place, so nothing depends on who remembered what, and you can finally see where the money is stuck.</p>
+            <ul class="slide__list">
+              <li>CRM &amp; pipeline management</li>
+              <li>Automated sales workflows</li>
+              <li>Marketing integration</li>
+              <li>Customer communication hub (texts, calls, emails, chat in one place)</li>
+              <li>Analytics &amp; reporting</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="slide slide--system" data-slide="5">
+          <div class="slide__panel">
+            <span class="slide__kicker">System 05 / 06</span>
+            <h2>Financial Clarity<br>System&trade;</h2>
+            <p class="slide__tag">Know your numbers. Grow your business.</p>
+            <p class="slide__why">You cannot steer by a bank balance. Clean, closed books every month turn &ldquo;I think we&rsquo;re fine&rdquo; into a statement you can read &mdash; what you earn, what you owe, what is coming &mdash; so hiring, pricing and spending become decisions instead of guesses.</p>
+            <ul class="slide__list">
+              <li>QuickBooks Online management (setup, cleanup, maintenance)</li>
+              <li>Ramp credit card integration</li>
+              <li>Monthly book closing &amp; reconciliation</li>
+              <li>Income statement, balance sheet, cash flow</li>
+              <li>Accounts payable management</li>
+              <li>Quarterly reviews &amp; annual projections</li>
+              <li>Budgeting &amp; ratio tracking</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="slide slide--system" data-slide="6">
+          <div class="slide__panel">
+            <span class="slide__kicker">System 06 / 06</span>
+            <h2>Productivity<br>Powerhouse&trade;</h2>
+            <p class="slide__tag">Simplify your tech. Maximize your time.</p>
+            <p class="slide__why">The technology you run on should be invisible. When email, calendar, domains and your website are maintained by someone whose job it is, the hour you would lose to a plugin update or a locked account goes back to the work only you can do.</p>
+            <ul class="slide__list">
+              <li>Google Workspace &amp; Office365 management</li>
+              <li>GoDaddy domain management</li>
+              <li>WordPress CMS management (updates, backups, plugins)</li>
+              <li>Email &amp; calendar integration</li>
+              <li>Tech support &amp; troubleshooting</li>
+            </ul>
+          </div>
+        </article>
+
+        <div class="finale-line" id="finale-line">
+          <span class="finale-line__brand">STRADIGI</span>
+          <span class="finale-line__tag">One mentor. Six systems. Unlimited growth.</span>
+          <span class="finale-line__icp">Built for home service companies, health &amp; wellness practices, trades and contractors, and professional service firms across Canonsburg, Washington County and Pittsburgh.</span>
+          <span class="finale-line__contact"><a href="tel:+17242097020">724-209-7020</a> &middot; 2400 Ansys Dr, Suite 102, Canonsburg PA &middot; Mon&ndash;Sun 9:00&ndash;17:00</span>
+        </div>
+
+        <nav class="scrolly__rail" id="rail" aria-label="Systems">
+          <div class="scrolly__ruler" id="ruler"><div class="scrolly__ruler-fill"></div></div>
+          <ol class="rail__ticks" id="rail-ticks"></ol>
+        </nav>
+
+        <div class="scrolly__scroll-down" id="scroll-down">
+          <span>Scroll down</span><div class="c-scroll-down__inner"></div>
+        </div>
+      </section>
+    </div>
+
+
+
+  </main>
+
+
+
+  <section class="se-section" id="serve">
+    <div class="se-container">
+      <div class="se-head">
+        <span class="se-index">/ 01</span>
+        <h2 class="se-heading">Who we help</h2>
+        <p class="se-lede">Built for local entrepreneurs who are serious about growth but overwhelmed by the day to day.</p>
+      </div>
+      <div class="serve-grid serve-strips">
+        <article class="serve-card spot" data-cta="For home service companies: roofing, remodeling, landscaping, HVAC." tabindex="0" role="link" aria-label="home services: book a free session" style="--i:0">
+          <div class="serve-card__media"><img decoding="async" src="assets/img/serve-home.jpg" alt="A roofer nailing new shingles at dusk while a second worker carries a bundle up the ladder" width="1200" height="1600"></div>
+          <div class="serve-card__body">
+            <span class="serve-card__num">01</span>
+            <h3>Home service companies</h3>
+            <p>Roofing, remodeling, landscaping, HVAC.</p>
+            <span class="serve-card__cta">Book a free session <i aria-hidden="true">&rarr;</i></span>
+          </div>
+        </article>
+        <article class="serve-card spot" data-cta="For health &amp; wellness professionals: chiropractors, therapists, studios." tabindex="0" role="link" aria-label="health & wellness: book a free session" style="--i:1">
+          <div class="serve-card__media"><img decoding="async" src="assets/img/serve-wellness.jpg" alt="A chiropractor adjusting a patient in a warm, modern clinic" width="1200" height="1600"></div>
+          <div class="serve-card__body">
+            <span class="serve-card__num">02</span>
+            <h3>Health &amp; wellness professionals</h3>
+            <p>Chiropractors, therapists, studios.</p>
+            <span class="serve-card__cta">Book a free session <i aria-hidden="true">&rarr;</i></span>
+          </div>
+        </article>
+        <article class="serve-card spot" data-cta="For trades and contractors: the people who do the work." tabindex="0" role="link" aria-label="trades: book a free session" style="--i:2">
+          <div class="serve-card__media"><img decoding="async" src="assets/img/serve-trades.jpg" alt="A contractor measuring lumber in a workshop lit by a single window" width="1200" height="1600"></div>
+          <div class="serve-card__body">
+            <span class="serve-card__num">03</span>
+            <h3>Trades and contractors</h3>
+            <p>The people who do the work.</p>
+            <span class="serve-card__cta">Book a free session <i aria-hidden="true">&rarr;</i></span>
+          </div>
+        </article>
+        <article class="serve-card spot" data-cta="For professional service firms: law, finance, real estate, marketing." tabindex="0" role="link" aria-label="professional services: book a free session" style="--i:3">
+          <div class="serve-card__media"><img decoding="async" src="assets/img/serve-professional.jpg" alt="A firm owner reading a document at her office window at night, city lights beyond" width="1200" height="1600"></div>
+          <div class="serve-card__body">
+            <span class="serve-card__num">04</span>
+            <h3>Professional service firms</h3>
+            <p>Law, finance, real estate, marketing.</p>
+            <span class="serve-card__cta">Book a free session <i aria-hidden="true">&rarr;</i></span>
+          </div>
+        </article>
+      </div>
+      <p class="serve-geo">Canonsburg, Washington County and Pittsburgh.</p>
+    </div>
+  </section>
+
+  <section class="band3d band3d--crane" id="leg-built" data-scene="crane" aria-label="The six systems, installed one by one">
+    <div class="band3d-pin">
+      <div class="band3d-stage" aria-hidden="true"></div>
+      <div class="se-container crane-grid">
+        <div class="crane-copy">
+          <div class="se-head">
+            <span class="se-eyebrow">Watch it come together</span>
+            <h2 class="se-heading" style="max-width:18ch;">We don&rsquo;t hand you software. We install systems.</h2>
+            <p class="se-lede">Keep scrolling: six systems, placed one at a time, the same way we build them into your business.</p>
+          </div>
+        </div>
+        <ul class="crane-systems">
+          <li>Growth Mentorship&trade;</li>
+          <li>Smart Automation&trade;</li>
+          <li>Authority Builder&trade;</li>
+          <li>Business Engine&trade;</li>
+          <li>Financial Clarity System&trade;</li>
+          <li>Productivity Powerhouse&trade;</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="se-section" id="systems">
+    <div class="se-container">
+      <div class="se-head">
+        <span class="se-index">/ 02</span>
+        <h2 class="se-heading" style="max-width:26ch;">The Stradigi Success System&trade;</h2>
+        <p class="se-lede">Growth Mentorship&trade; is where every partnership begins. The other five get implemented once mentoring finds the gap.</p>
+      </div>
+      <div class="systems-grid">
+        <article class="system-card spot">
+          <span class="system-card__kicker">System 01 / 06</span>
+          <h3>Growth Mentorship&trade;</h3>
+          <p class="system-card__tag">Real-world guidance and accountability to grow strategically.</p>
+          <ul class="system-card__list">
+            <li>Two to three free mentoring sessions</li>
+            <li>Full business health assessment</li>
+            <li>Personalized growth roadmap</li>
+          </ul>
+          <a class="se-link" href="systems/growth-mentorship.html">Full details &rarr;</a>
+        </article>
+        <article class="system-card spot">
+          <span class="system-card__kicker">System 02 / 06</span>
+          <h3>Smart Automation&trade;</h3>
+          <p class="system-card__tag">Save time and grow faster with AI-powered automation.</p>
+          <ul class="system-card__list">
+            <li>Chat &amp; voice automation</li>
+            <li>Social media automation</li>
+            <li>Appointment scheduling with auto reminders</li>
+          </ul>
+          <a class="se-link" href="systems/smart-automation.html">Full details &rarr;</a>
+        </article>
+        <article class="system-card spot">
+          <span class="system-card__kicker">System 03 / 06</span>
+          <h3>Authority Builder&trade;</h3>
+          <p class="system-card__tag">Be the business everyone finds and trusts online.</p>
+          <ul class="system-card__list">
+            <li>Local SEO optimization (keyword research, on-page, Google Business Profile)</li>
+            <li>Review &amp; reputation management</li>
+            <li>Content marketing (blog + social aligned to target keywords)</li>
+          </ul>
+          <a class="se-link" href="systems/authority-builder.html">Full details &rarr;</a>
+        </article>
+        <article class="system-card spot">
+          <span class="system-card__kicker">System 04 / 06</span>
+          <h3>Business Engine&trade;</h3>
+          <p class="system-card__tag">Your all-in-one automation and CRM system.</p>
+          <ul class="system-card__list">
+            <li>CRM &amp; pipeline management</li>
+            <li>Automated sales workflows</li>
+            <li>Marketing integration</li>
+          </ul>
+          <a class="se-link" href="systems/business-engine.html">Full details &rarr;</a>
+        </article>
+        <article class="system-card spot">
+          <span class="system-card__kicker">System 05 / 06</span>
+          <h3>Financial Clarity System&trade;</h3>
+          <p class="system-card__tag">Know your numbers. Grow your business.</p>
+          <ul class="system-card__list">
+            <li>QuickBooks Online management (setup, cleanup, maintenance)</li>
+            <li>Ramp credit card integration</li>
+            <li>Monthly book closing &amp; reconciliation</li>
+          </ul>
+          <a class="se-link" href="systems/financial-clarity-system.html">Full details &rarr;</a>
+        </article>
+        <article class="system-card spot">
+          <span class="system-card__kicker">System 06 / 06</span>
+          <h3>Productivity Powerhouse&trade;</h3>
+          <p class="system-card__tag">Simplify your tech. Maximize your time.</p>
+          <ul class="system-card__list">
+            <li>Google Workspace &amp; Office365 management</li>
+            <li>GoDaddy domain management</li>
+            <li>WordPress CMS management (updates, backups, plugins)</li>
+          </ul>
+          <a class="se-link" href="systems/productivity-powerhouse.html">Full details &rarr;</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band3d band3d--plane" id="leg-automated" data-scene="conveyor" aria-hidden="true">
+    <span class="band3d-ghost">Stradigi</span>
+    <div class="band3d-stage"></div>
+  </section>
+
+
+  <section class="ambient se-section se-section--dim" id="about">
+    <div class="se-container">
+      <span class="se-index">/ 03</span>
+      <div class="about-grid">
+        <figure class="about-photo">
+          <img decoding="async" src="assets/img/jason-operator.jpg" alt="Jason Tapolci, founder of Stradigi, standing in front of his framed Inc. 5000 award" width="1400" height="1400" loading="lazy">
+          <figcaption>Jason Tapolci, Founder</figcaption>
+        </figure>
+        <div class="about-copy">
+          <span class="se-eyebrow">Built by an operator</span>
+          <h2 class="se-heading" style="max-width:16ch;">Built by an entrepreneur who&rsquo;s been there</h2>
+          <p data-words>I started Stradigi because I know exactly what it feels like to be trapped in your own business, too busy keeping it alive to actually make it grow. I&rsquo;ve built, scaled, and sold companies, and now my focus is helping local small business owners find the same freedom, structure, and clarity that changed my path. Stradigi is more than consulting. It&rsquo;s mentorship and systems that actually work in the real world.</p>
+          <a class="se-link" href="about.html">More about Jason &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="route-band" id="leg-journey" aria-label="The journey: build, scale, exit, mentor">
+    <div class="se-container">
+      <svg class="route-svg" viewBox="0 0 1200 300" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <path class="route-path" d="M 30 250 C 260 240, 320 140, 520 150 C 700 160, 760 70, 950 80 C 1050 84, 1120 50, 1170 40" />
+      </svg>
+      <div class="route-nodes" aria-hidden="true"></div>
+    </div>
+  </section>
+
+
+  <section class="ambient se-section trust-spotlight" id="trust">
+    <div class="se-container">
+      <div class="se-head">
+        <span class="se-index">/ 04</span>
+        <span class="se-eyebrow">Trusted locally</span>
+        <h2 class="se-heading" style="max-width:16ch;">Real local businesses. Real results.</h2>
+      </div>
+      <div class="trust-pair">
+        <figure class="trust-photo">
+          <img decoding="async" src="assets/img/jason-excel-mentoring.jpg" alt="Jason Tapolci mentoring Noah McCracken at Excel Martial Arts" width="1600" height="1066" loading="lazy">
+        </figure>
+        <div class="trust-quote">
+          <blockquote data-words>&ldquo;Jason helped us double our enrollment and finally structure the business so I could focus on teaching again.&rdquo;</blockquote>
+          <cite><span class="avatar-chip" style="background:var(--accent);">NM</span> Noah McCracken, Excel Martial Arts</cite>
+        </div>
+      </div>
+      <div class="trust-row">
+        <div class="trust-card">
+          <blockquote>&ldquo;With Stradigi&rsquo;s systems, I run my chiropractic practice more efficiently than ever.&rdquo;</blockquote>
+          <cite><span class="avatar-chip" style="background:var(--accent);">MR</span> Dr. Marcus Robinson, Robinson Chiropractic</cite>
+        </div>
+        <div class="trust-card">
+          <blockquote>&ldquo;Jason showed us how to track our jobs, manage cash flow, and plan for growth.&rdquo;</blockquote>
+          <cite><span class="avatar-chip" style="background:var(--accent-deep);">LA</span> Linda Ahrens, Smart Contractors Inc.</cite>
+        </div>
+      </div>
+      <div class="trust-marquee" aria-label="More from Stradigi clients">
+        <div class="trust-marquee__track">
+          <figure class="trust-marquee__item"><blockquote>&ldquo;Now our sales process is clear, our communication is organized, and we finally feel in control again.&rdquo;</blockquote><cite><b>Gina Berardinelli</b> &middot; Quillon Closings</cite></figure>
+          <figure class="trust-marquee__item"><blockquote>&ldquo;Our client communication used to be chaos now it&rsquo;s consistent, instant, and effortless. It&rsquo;s like having a 24/7 assistant.&rdquo;</blockquote><cite><b>Josh Wilkinson</b> &middot; Wilkinson Roofing</cite></figure>
+          <figure class="trust-marquee__item"><blockquote>&ldquo;Authority Builder&trade; gave us real presence reviews, SEO, and content that finally matched our quality of service.&rdquo;</blockquote><cite><b>Dave Gratta</b></cite></figure>
+          <figure class="trust-marquee__item"><blockquote>&ldquo;Before Stradigi, we were invisible online. Now we&rsquo;re ranking #1 in our area, and the phone rings daily.&rdquo;</blockquote><cite><b>Clint Holmes</b></cite></figure>
+          <figure class="trust-marquee__item"><blockquote>&ldquo;With Stradigi&rsquo;s systems, I run my chiropractic practice more efficiently than ever. I have time for my patients and my family.&rdquo;</blockquote><cite><b>Dr. Marcus Robinson</b> &middot; Robinson Chiropractic</cite></figure>
+          <figure class="trust-marquee__item"><blockquote>&ldquo;Jason showed us how to track our jobs, manage cash flow, and plan for growth. I finally feel like I&rsquo;m leading my business instead of chasing it.&rdquo;</blockquote><cite><b>Linda Ahrens</b> &middot; Smart Contractors Inc.</cite></figure>
+          <figure class="trust-marquee__item" aria-hidden="true"><blockquote>&ldquo;Now our sales process is clear, our communication is organized, and we finally feel in control again.&rdquo;</blockquote><cite><b>Gina Berardinelli</b> &middot; Quillon Closings</cite></figure>
+          <figure class="trust-marquee__item" aria-hidden="true"><blockquote>&ldquo;Our client communication used to be chaos now it&rsquo;s consistent, instant, and effortless. It&rsquo;s like having a 24/7 assistant.&rdquo;</blockquote><cite><b>Josh Wilkinson</b> &middot; Wilkinson Roofing</cite></figure>
+          <figure class="trust-marquee__item" aria-hidden="true"><blockquote>&ldquo;Authority Builder&trade; gave us real presence reviews, SEO, and content that finally matched our quality of service.&rdquo;</blockquote><cite><b>Dave Gratta</b></cite></figure>
+          <figure class="trust-marquee__item" aria-hidden="true"><blockquote>&ldquo;Before Stradigi, we were invisible online. Now we&rsquo;re ranking #1 in our area, and the phone rings daily.&rdquo;</blockquote><cite><b>Clint Holmes</b></cite></figure>
+          <figure class="trust-marquee__item" aria-hidden="true"><blockquote>&ldquo;With Stradigi&rsquo;s systems, I run my chiropractic practice more efficiently than ever. I have time for my patients and my family.&rdquo;</blockquote><cite><b>Dr. Marcus Robinson</b> &middot; Robinson Chiropractic</cite></figure>
+          <figure class="trust-marquee__item" aria-hidden="true"><blockquote>&ldquo;Jason showed us how to track our jobs, manage cash flow, and plan for growth. I finally feel like I&rsquo;m leading my business instead of chasing it.&rdquo;</blockquote><cite><b>Linda Ahrens</b> &middot; Smart Contractors Inc.</cite></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band3d band3d--plane" data-scene="plane" aria-hidden="true">
+    <span class="band3d-ghost">Stradigi</span>
+    <div class="band3d-stage"></div>
+  </section>
+
+  <section class="se-cta-band ambient" id="ready">
+    <span class="se-cta-ghost" aria-hidden="true">Stradigi</span>
+    <div class="se-container">
+      <h2 class="se-heading">Ready to work on your business, not in it?</h2>
+      <p>No pressure. No sales pitch. Just a conversation about your goals, your challenges, and your next steps.</p>
+      <a class="se-btn" href="#contact" data-cursor-label="BOOK">Book a free session</a>
+    </div>
+  </section>
+
+
+
+  <section class="band3d band3d--plane" id="leg-delivered" data-scene="truck" aria-hidden="true">
+    <span class="band3d-ghost">Stradigi</span>
+    <div class="band3d-stage"></div>
+  </section>
+
+  <section class="ambient se-section se-section--dim" id="pricing">
+    <div class="se-container">
+      <div class="se-head">
+        <span class="se-index">/ 05</span>
+        <h2 class="se-heading">Simple, flexible plans</h2>
+        <p class="se-lede">No long-term contracts. Adjust or cancel anytime.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="price-card spot">
+          <h3>Core</h3>
+          <p class="amount"><s>$197</s><span class="odo">$97</span> <small>/mo</small></p>
+          <p class="desc">CRM, contact management, unified messaging, calendar, scheduling, task management, reports.</p>
+        </div>
+        <div class="price-card spot">
+          <h3>Plus</h3>
+          <p class="amount"><s>$394</s><span class="odo">$297</span> <small>/mo</small></p>
+          <p class="desc">Core, plus marketing, social media manager, email campaigns, reputation manager, automation.</p>
+        </div>
+        <div class="price-card spot">
+          <h3>Pro</h3>
+          <p class="amount"><s>$528</s><span class="odo">$397</span> <small>/mo</small></p>
+          <p class="desc">Plus, plus sites, funnels, websites, stores.</p>
+        </div>
+      </div>
+      <p class="pricing-note">AI-Voice Agent and AI-Chat Agent add-ons available at $97/mo each, usage rates may apply. Done-for-you services (mentoring, marketing, bookkeeping, IT) are quoted per business, call for pricing.</p>
+      <a class="se-link" href="pricing.html">Full pricing details &rarr;</a>
+    </div>
+  </section>
+
+
+  <section class="band3d band3d--map" id="leg-arrived" data-scene="map" aria-label="Where Stradigi works: Pittsburgh, Canonsburg, and Washington County">
+    <div class="band3d-stage" aria-hidden="true"></div>
+    <span class="map-label">Pittsburgh</span>
+    <span class="map-label map-label--hq">Canonsburg &middot; HQ</span>
+    <span class="map-label">Washington</span>
+  </section>
+
+  <section class="se-section" id="contact">
+    <div class="se-container">
+      <span class="se-index">/ 06</span>
+      <div class="contact-split">
+        <div class="contact-panel contact-panel--fill">
+          <h3>New to Stradigi?</h3>
+          <p>Start with a free mentoring session. No pressure, no sales pitch, just a conversation about your business.</p>
+          <p class="contact-tailored" id="contact-tailored" hidden></p>
+          <a class="se-btn" href="contact.html" data-cursor-label="BOOK">Book a free session</a>
+        </div>
+        <div class="contact-panel contact-panel--outline spot">
+          <h3>Already know what you need?</h3>
+          <p>Look at the six systems and pricing above, then reach out to get started.</p>
+          <a class="se-btn" href="tel:+17242097020">Call 724-209-7020</a>
+          <p class="contact-status" id="contact-status" aria-live="polite"><i></i><span>Mon&ndash;Sun, 9:00 am&ndash;5:00 pm ET</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="se-section mark-live" id="mark" aria-label="The Stradigi mark, live">
+    <div class="se-container mark-live__grid">
+      <div class="mark-live__copy">
+        <span class="se-index">/ 07</span>
+        <h2 class="se-heading" style="max-width:12ch;">The machine, assembled.</h2>
+        <p class="se-lede">Six systems, one object. Drag to turn it. Come closer and it comes apart.</p>
+      </div>
+      <div class="mark-live__stage" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <p class="legal-box">Pitch demo built for Stradigi review &mdash; not live, not public. All system names, taglines and deliverables are Stradigi&rsquo;s own, reproduced exactly from the project source of truth (&trade; included). Headline positioning follows the new stradigi.io service pages; the source of truth flags the old-vs-new positioning as an open question for Jason to confirm before anything ships. No statistics appear here by design &mdash; every number on the current site is marked conflicting or uncited, and the rule is cite it or cut it.</p>
+
+  <footer class="site-footer">
+    <div class="se-container footer-grid">
+      <div class="footer-brand">
+        <img src="assets/logo/stradigi-logo.png" alt="Stradigi" width="718" height="347">
+        <p>Helping small business owners across Canonsburg, Washington County, and Pittsburgh simplify growth, automate operations, and work on their business instead of in it.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Systems</h3>
+        <ul>
+          <li><a href="systems/growth-mentorship.html">Growth Mentorship&trade;</a></li>
+          <li><a href="systems/smart-automation.html">Smart Automation&trade;</a></li>
+          <li><a href="systems/authority-builder.html">Authority Builder&trade;</a></li>
+          <li><a href="systems/business-engine.html">Business Engine&trade;</a></li>
+          <li><a href="systems/financial-clarity-system.html">Financial Clarity System&trade;</a></li>
+          <li><a href="systems/productivity-powerhouse.html">Productivity Powerhouse&trade;</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Company</h3>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="https://stradigi.io/blog/" target="_blank" rel="noopener">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <ul>
+          <li>2400 Ansys Dr, Suite 102<br>Canonsburg, PA 15317</li>
+          <li><a href="tel:+17242097020">724-209-7020</a></li>
+          <li>Mon&ndash;Sun, 9am&ndash;5pm</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-giant" aria-hidden="true"><span>Stradigi</span><span class="fill">Stradigi</span></div>
+    <div class="footer-bottom">&copy; 2026 Stradigi, LLC. All rights reserved.</div>
+  </footer>
+
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/ScrollToPlugin.min.js"></script>
+<script src="scene.js"></script>
+<script src="app.js"></script>
+<script src="site.js"></script>
+<script src="odometer.js"></script>
+<script src="ambience.js"></script>
+<script src="lab-motion.js"></script>
+<script src="lab-cursor.js"></script>
+<script src="lab-wow.js"></script>
+<script src="lab-sound.js"></script>
+<script type="module" src="lab-bands.js"></script>
+<script type="module" src="lab-mark.js"></script>
+
+  <div class="serve-modal" id="serve-modal" role="dialog" aria-modal="true" aria-labelledby="serve-modal-title" hidden>
+    <div class="serve-modal__backdrop" data-close></div>
+    <figure class="serve-modal__photo" aria-hidden="true"><img id="serve-modal-img" src="" alt=""></figure>
+    <div class="serve-modal__panel">
+      <button class="serve-modal__close" type="button" aria-label="Close" data-close data-cursor-label="CLOSE">&times;</button>
+      <p class="serve-modal__kicker" id="serve-modal-kicker"></p>
+      <h2 class="se-heading serve-modal__title" id="serve-modal-title"></h2>
+      <p class="serve-modal__lede">Start with a free mentoring session. No pressure, no sales pitch, just a conversation about your business.</p>
+      <p class="serve-modal__label">What Stradigi installs</p>
+      <ul class="serve-modal__list" id="serve-modal-list"></ul>
+      <blockquote class="serve-modal__quote" id="serve-modal-quote"></blockquote>
+      <div class="serve-modal__cta">
+        <a class="se-btn" id="serve-modal-book" href="#contact" data-cursor-label="BOOK">Book a free session</a>
+        <a class="serve-modal__phone" href="tel:+17242097020">or call 724-209-7020</a>
+      </div>
+    </div>
+  </div>
+
+<script src="lab-veil.js"></script>
+</body>
+</html>
