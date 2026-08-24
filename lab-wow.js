@@ -171,6 +171,13 @@
       document.getElementById("serve-modal-list").innerHTML = d.list.map(function (x) { return "<li><b>" + x[0] + "</b><span>" + x[1] + "</span></li>"; }).join("");
       document.getElementById("serve-modal-quote").innerHTML = d.quote + "<cite>" + d.cite + "</cite>";
     }
+    function setInert(on) {
+      if (!("inert" in HTMLElement.prototype)) return;
+      Array.prototype.forEach.call(document.body.children, function (el) {
+        if (el === modal || el.tagName === "SCRIPT") return;
+        if (on) el.setAttribute("inert", ""); else el.removeAttribute("inert");
+      });
+    }
     function openModal(i) {
       var d = SERVE[i];
       if (!d || !modal) return;
@@ -178,6 +185,7 @@
       modal.__cta = d.cta;
       lastFocus = document.activeElement;
       modal.hidden = false;
+      setInert(true);
       document.documentElement.style.overflow = "hidden";
       requestAnimationFrame(function () { modal.classList.add("is-open"); });
       modal.querySelector(".serve-modal__close").focus();
@@ -186,9 +194,19 @@
       if (!modal || modal.hidden) return;
       modal.classList.remove("is-open");
       modal.hidden = true;
+      setInert(false);
       document.documentElement.style.overflow = "";
       if (lastFocus && lastFocus.focus) lastFocus.focus();
     }
+    // keyboard: Tab cycles inside the dialog
+    modal && modal.addEventListener("keydown", function (e) {
+      if (e.key !== "Tab") return;
+      var f = modal.querySelectorAll("a[href], button:not([disabled])");
+      if (!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
     modal && modal.addEventListener("click", function (e) {
       if (e.target.closest("[data-close]")) { closeModal(); return; }
       if (e.target.closest("#serve-modal-book")) {

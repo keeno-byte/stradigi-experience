@@ -53,6 +53,11 @@ gsap.ticker.lagSmoothing(0);
    load from the viewport; SCENE.frameFit is told the baked size so the
    disc lands exactly where those frames drew it. */
 const PORTRAIT = innerWidth < innerHeight && innerWidth < 900;
+/* Data diet (2026-08-24 gauntlet): on Save-Data or a slow connection the
+   half-res set IS the site - the 35-43MB full-res stream never starts.
+   On phones the full-res stream also waits until the intro is over, so
+   it never competes with the film or the first chapters for bandwidth. */
+const LITE = !!(navigator.connection && (navigator.connection.saveData || /(^|\b)(slow-2g|2g|3g)($|\b)/.test(navigator.connection.effectiveType || '')));
 if (PORTRAIT) {
   CONFIG.FRAMES.dir = 'assets/frames-m/';
   if (SCENE.setBakeSize) SCENE.setBakeSize(1080, 1920);
@@ -109,6 +114,16 @@ async function preloadFrames() {
   // background: the rest of the full-res set, small batches, never
   // blocking START
   (async () => {
+    if (LITE) return;   // half-res only on constrained connections
+    if (PORTRAIT) {
+      // phones: wait for the gate to drop before spending bandwidth
+      await new Promise((res) => {
+        const root = document.documentElement;
+        if (!root.classList.contains('gated')) { res(); return; }
+        new MutationObserver((m, mo) => { if (!root.classList.contains('gated')) { mo.disconnect(); res(); } })
+          .observe(root, { attributes: true, attributeFilter: ['class'] });
+      });
+    }
     for (let i = 0; i < CONFIG.FRAMES.count; i += 6) {
       const batch = [];
       for (let j = i; j < Math.min(i + 6, CONFIG.FRAMES.count); j++) if (!frames[j]) batch.push(load(frames, frameUrl, j, false));
@@ -202,6 +217,7 @@ let requestSkip = null;   // set while the reveal film plays: cuts straight to t
 let autoSkip = false;     // skip pressed before the preload finished
 
 let skipToContent = false;  // the big skip wants the page, not the film's first stop
+let skipTarget = '#serve';  // where finishReveal lands when skipping (nav clicks set this)
 function finishReveal() {
   ambientRunning = false;
   if (ambientVideo) ambientVideo.pause();
@@ -214,6 +230,7 @@ function finishReveal() {
      piece never starts to lift before anyone meant it to */
   window.scrollTo(0, 0);
   stepLock = performance.now() + 1200;
+  try { localStorage.setItem('sx-seen', '1'); } catch (e) {}
   ScrollTrigger.refresh();
   if (skipToContent) {
     /* The skip means "get me to the page" (Keeno, 2026-08-23: pressing it
@@ -221,8 +238,9 @@ function finishReveal() {
        "it's there, and it doesn't work"). Land just past the pin, on Who
        we help, instantly - no travel through the film. */
     skipToContent = false;
-    const serve = document.getElementById('serve');
-    if (serve) window.scrollTo(0, serve.getBoundingClientRect().top + window.scrollY - 76);
+    const target = document.querySelector(skipTarget) || document.getElementById('serve');
+    skipTarget = '#serve';
+    if (target) window.scrollTo(0, target.getBoundingClientRect().top + window.scrollY - 76);
     stepLock = performance.now() + 800;
   }
 }
@@ -312,6 +330,29 @@ function doSkip() {
   // finishReveal will honour skipToContent when it lands.
 }
 skipBtn.addEventListener('click', doSkip);
+
+/* Nav links used to be dead while the intro owned the page - a click on
+   SYSTEMS during the film changed the hash and nothing moved. Now any
+   in-page anchor clicked while gated skips the intro and lands there. */
+document.addEventListener('click', (e) => {
+  if (!document.documentElement.classList.contains('gated')) return;
+  const link = e.target.closest && e.target.closest('a[href^="#"]');
+  if (!link) return;
+  const hash = link.getAttribute('href');
+  if (hash.length < 2 || !document.querySelector(hash)) return;
+  e.preventDefault();
+  skipTarget = hash;
+  doSkip();
+});
+
+/* B) Returning visitors: the intro marks itself seen after its first
+   completed run; on the next visit the skip reads as the main road. */
+try {
+  if (localStorage.getItem('sx-seen')) {
+    skipBtn.classList.add('is-return');
+    skipBtn.querySelector('.intro-skip__label').textContent = 'Straight to the site';
+  }
+} catch (e) {}
 
 let preSwipe = 0, lastNudge = 0;
 function impatient(amount) {
@@ -671,6 +712,7 @@ function initScrolly() {
      (see renderFrame), so only the destination's full-res frame needs to be
      ready before the step lands. One off-thread decode per step. */
   function decodeAhead(fromP, toP) {
+    if (LITE) return;
     const i = Math.round(toP * (CONFIG.FRAMES.count - 1)), im = frames[i];
     if (im && im.decode) im.decode().catch(() => {});
   }

@@ -808,3 +808,61 @@ html.gated .intro-skip { display: inline-flex; }
 @media (prefers-reduced-motion: reduce) {
   .serve-modal__photo, .serve-modal__panel { opacity: 1; transform: none; transition: none; }
 }
+
+/* returning visitors: the skip is the main road */
+.intro-skip.is-return {
+  background: var(--accent);
+  border-color: var(--accent-bright);
+  color: #fff;
+}
+.intro-skip.is-return:hover { background: var(--accent-hover); }
+
+/* keyboard skip link: hidden until focused */
+.sr-skip {
+  position: fixed;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 120;
+  padding: 12px 20px;
+  background: var(--accent);
+  color: #fff;
+  font: 700 13px/1 "Barlow", "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 0 0 8px 8px;
+  transition: top 0.2s ease;
+}
+.sr-skip:focus-visible { top: 0; outline: 2px solid #fff; outline-offset: -4px; }
+
+/* -------------------------------- FAQ -------------------------------- */
+.faq-list { display: grid; gap: 10px; max-width: 760px; }
+.faq-item {
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: var(--panel);
+  border-radius: 10px;
+}
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 18px 52px 18px 22px;
+  position: relative;
+  font: 600 17px/1.3 "Barlow", "Helvetica Neue", Arial, sans-serif;
+  color: var(--text);
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: "+";
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 22px;
+  color: var(--accent-bright);
+  transition: transform 0.25s ease;
+}
+.faq-item[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+.faq-item summary:focus-visible { outline: 2px solid var(--accent-bright); outline-offset: -2px; border-radius: 10px; }
+.faq-item p { padding: 0 22px 20px; color: var(--text-dim); font-size: 16px; line-height: 1.55; max-width: 60ch; }
+.faq-item summary:hover { color: var(--accent-bright); }

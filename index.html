@@ -33,6 +33,22 @@
   "founder": { "@type": "Person", "name": "Jason Tapolci" }
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How does an engagement start?",
+      "acceptedAnswer": { "@type": "Answer", "text": "With two to three free mentoring sessions and a full business health assessment, then a personalized growth roadmap. No pressure, no sales pitch." } },
+    { "@type": "Question", "name": "What does it cost?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Plans run $97, $297, or $397 a month, with no long-term contracts; adjust or cancel anytime. Done-for-you services are quoted per business." } },
+    { "@type": "Question", "name": "Who will I actually work with?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Jason Tapolci, Stradigi's founder. Mentoring comes first, and the six systems get installed around what the mentoring finds." } },
+    { "@type": "Question", "name": "Where is Stradigi based?",
+      "acceptedAnswer": { "@type": "Answer", "text": "2400 Ansys Dr, Suite 102, Canonsburg PA. We work with businesses across Canonsburg, Washington County, and Pittsburgh, in person, Monday through Sunday, 9 to 5." } }
+  ]
+}
+</script>
 <meta property="og:type" content="website">
 <meta property="og:title" content="Stradigi: One Mentor. Six Systems. Unlimited Growth.">
 <meta property="og:description" content="Watch the Stradigi Success System&trade; come apart, one system at a time. Small-business mentorship and systems from Canonsburg, PA.">
@@ -42,6 +58,24 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Stradigi: One Mentor. Six Systems. Unlimited Growth.">
 <meta name="twitter:image" content="https://keeno-byte.github.io/stradigi-experience/assets/og.jpg">
+<!--
+  Stradigi scrollytelling experience — pitch demo for Jason, NOT live/public.
+  Motion architecture is the reference launch page's, mechanism for
+  mechanism (see ../scrollytelling-clone/index.html for the provenance
+  checklist). Hyper-real pass, 2026-08-21: the mark is a generated
+  machined-metal + glass render (assets/mark-real.png, img2img from the
+  client's own logo file so the geometry is exact), the stage is a
+  generated studio plate, the intro is a generated ambient video.
+
+  FACT DISCIPLINE (stradigi-website CLAUDE.md: "Never invent a fact about
+  Stradigi"): every system name, tagline and deliverable is byte-for-byte
+  from ~/stradigi-website/docs/STRADIGI_SOURCE_OF_TRUTH.md §3 [VERIFIED].
+  The hero line is the new site's own positioning ("One Mentor. Six
+  Systems. Unlimited Growth.", §2 [VERIFIED]) — note SOT §12 Q1: the
+  old/new positioning split is Jason's call to confirm. The ICP list is §5
+  [VERIFIED]. Every numeric claim the SOT marks [CONFLICT]/[CLIENT-CLAIM]
+  is deliberately absent — "cite it or cut it."
+-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -50,6 +84,14 @@
 <link rel="stylesheet" href="site.css">
 <link rel="stylesheet" href="lab-bands.css">
 <link rel="stylesheet" href="lab-wow.css">
+<!-- Load veil: inline so it paints before any stylesheet or font arrives.
+     Keeno, 2026-08-23: "add a load in animation so the website has time
+     to load so the user does not see stale info" - the first paint used
+     to show the intro in fallback fonts with a disabled START and an
+     unstarted progress bar until Barlow swapped in. The veil holds until
+     fonts are ready AND the frame preload has enabled START (mirrors the
+     real loader progress in its hairline), min 1.4s so the beat lands,
+     hard ceiling 6s so a stalled asset can never trap the page. -->
 <style>
   .veil {
     position: fixed; inset: 0; z-index: 100;
@@ -75,6 +117,8 @@
 </head>
 <body>
 
+  <a class="sr-skip" href="#serve">Skip to content</a>
+
   <div class="veil" id="veil" aria-hidden="true">
     <div class="veil__inner">
       <img class="veil__mark" src="assets/logo/stradigi-logo.png" alt="" width="718" height="347">
@@ -83,6 +127,15 @@
     </div>
   </div>
 
+  <!-- ============ SLIM TOP NAV ============
+       Always visible, from the loader on — "so nobody is ever trapped in
+       the intro" (Keeno). Fixed above the loader, the pinned scrolly and
+       the pinned gallery (site.css .site-nav, z-index above .hero-reveal's
+       50). Section links scroll this same page (site.js); Blog is the one
+       external link (curl -sI https://stradigi.io/blog/ -> 200, checked
+       2026-08-22). This header is the one CSS/JS surface for the future
+       homepage swap — logo, links and CTA already use the site's own
+       relative paths. -->
   <header class="site-nav" id="site-nav">
     <div class="site-nav__inner">
       <a class="site-nav__logo" href="#" aria-label="Stradigi, back to top">
@@ -112,6 +165,11 @@
     </nav>
   </header>
 
+  <!-- ============ INTRO / REVEAL ============ -->
+  <!-- The one skip control (2026-08-23, Keeno: "a large aesthetic skip
+       button visible in the top left so returning users don't get stuck").
+       Visible from the loader on, under the nav's logo; before the page is
+       ready it queues the skip and shows "Loading". Gated-only via CSS. -->
   <button class="intro-skip" id="skip-btn" type="button" data-cursor-label="SKIP">
     <span class="intro-skip__ring" aria-hidden="true"></span>
     <span class="intro-skip__label">Skip the intro</span>
@@ -122,6 +180,8 @@
     <div class="hero-reveal__chrome"><span class="chrome-label">EN</span></div>
 
     <video class="hero-reveal__video" id="ambient-video" muted playsinline loop preload="auto" hidden></video>
+    <!-- the cloth-pull: generated from the loop's first frame to our exact
+         scene-at-t=0, so its last frame IS the interactive canvas's first -->
     <video class="hero-reveal__video hero-reveal__video--reveal" id="reveal-video" muted playsinline preload="auto" hidden></video>
     <canvas class="hero-reveal__ambient" id="ambient-canvas"></canvas>
 
@@ -129,6 +189,12 @@
       <h2>You started your business for freedom<br>not to become your own employee.</h2>
     </div>
 
+    <!-- the hook (Keeno, 2026-08-22): static HTML, no JS gate, so the
+         service is on screen from the first paint — before the loop, before
+         the film, before START. "I'd hate people to see our great animation
+         and not know the service we provide." Fades with the titles when
+         START is pressed. Copy: SOT §1 [VERIFIED] + the lab's own approved
+         hero line; system names + taglines byte-for-byte from SOT §3. -->
     <aside class="hero-reveal__aside hero-reveal__aside--what" aria-label="What Stradigi is">
       <span class="aside__kicker">Stradigi &middot; Canonsburg, PA</span>
       <h3>One mentor.<br>Six systems.</h3>
@@ -162,6 +228,7 @@
     </section>
   </div>
 
+  <!-- ============ MAIN SCROLLYTELLING ============ -->
   <main class="home-page">
     <div class="scrolly" id="scrolly">
       <section class="scrolly__content" id="scrolly-content">
@@ -169,8 +236,11 @@
         <div class="scrolly__placeholder first-frame" id="first-frame"></div>
         <div class="scrolly__placeholder last-frame" id="last-frame"></div>
         <canvas class="scrolly__canvas" id="seq-canvas"></canvas>
+        <!-- the lit socket: the bay the active system's piece came out of -->
         <canvas class="scrolly__spot" id="spot-canvas" aria-hidden="true"></canvas>
 
+        <!-- hero copy ABOVE the mark, badges BELOW it; the split point is
+             --disc-top/--disc-bottom, set by app.js from the real camera -->
         <article class="slide slide--hero" data-slide="0">
           <div class="hero-top">
             <h1>One Mentor. Six Systems.<br>Unlimited Growth.</h1>
@@ -289,6 +359,7 @@
           <span class="finale-line__contact"><a href="tel:+17242097020">724-209-7020</a> &middot; 2400 Ansys Dr, Suite 102, Canonsburg PA &middot; Mon&ndash;Sun 9:00&ndash;17:00</span>
         </div>
 
+        <!-- the rail: progress + one stop per system, built by app.js -->
         <nav class="scrolly__rail" id="rail" aria-label="Systems">
           <div class="scrolly__ruler" id="ruler"><div class="scrolly__ruler-fill"></div></div>
           <ol class="rail__ticks" id="rail-ticks"></ol>
@@ -304,8 +375,27 @@
 
   </main>
 
+  <!-- ============ THE REAL SITE, BELOW THE INTRO ============
+       This Experience becomes the Stradigi homepage, so everything from
+       here down is production copy, not placeholder — pulled verbatim from
+       ~/stradigi-website/index.html's own #systems / #about /
+       .trust-spotlight / #pricing / #contact / footer.site-footer, re-set
+       in this lab's dark tokens (style.css :root) instead of the site's
+       light "paper" palette, so the page reads as one continuous object
+       once the intro lets go. Structure and copy carried over; CSS is new
+       (site.css), per that repo's own "never invent a fact" rule — nothing
+       below is paraphrased, and no [CONFLICT]/[CLIENT-CLAIM] statistic
+       from the source-of-truth appears. -->
 
 
+  <!-- The intro took the machine apart; the crane puts the six systems
+       back together, one per scroll phase (ported from stradigi-website). -->
+  <!-- Who we help (2026-08-22): the site's own vertical grid, verbatim —
+       SOT §5 [VERIFIED] calls this "the clearest ICP statement on the entire
+       site" and notes the live site shows it nowhere above the fold. Pulled
+       in on Keeno's go after the Organizer window's punch list flagged it.
+       Photos are the site's own assets/img/vertical-*.jpg, natural colour
+       (duotone is the sockets' language, not the sections'). -->
   <section class="se-section" id="serve">
     <div class="se-container">
       <div class="se-head">
@@ -313,6 +403,12 @@
         <h2 class="se-heading">Who we help</h2>
         <p class="se-lede">Built for owners who are good at the work, and buried in everything around it.</p>
       </div>
+      <!-- 2026-08-23 rebuild (Keeno: "bolster and wow factor that area,
+           even if it means using Higgsfield"): four cinematic portraits
+           generated on Higgsfield (nano_banana_pro, 3:4, 2 credits each,
+           8 of the 13.24 on the balance - no top-up). Same ICP copy as
+           before, verbatim from SOT §5. Desktop: full-height strips that
+           expand on hover; phones: a snap carousel. -->
       <div class="serve-grid serve-strips">
         <article class="serve-card spot" data-cta="For home service companies: roofing, remodeling, landscaping, HVAC." tabindex="0" role="link" aria-label="home services: book a free session" style="--i:0">
           <div class="serve-card__media"><img decoding="async" src="assets/img/serve-home.jpg" alt="A roofer nailing new shingles at dusk while a second worker carries a bundle up the ladder" width="1200" height="1600"></div>
@@ -385,6 +481,9 @@
         <h2 class="se-heading" style="max-width:26ch;">The Stradigi Success System&trade;</h2>
         <p class="se-lede">Growth Mentorship&trade; is where every partnership begins. The other five get implemented once mentoring finds the gap.</p>
       </div>
+      <!-- 2-3 deliverables per card = the first three items of that
+           system's own full list (verbatim, above in #scrolly and in full
+           on systems/&lt;slug&gt;.html) — a consistent cut, not a curated one -->
       <div class="systems-grid">
         <article class="system-card spot">
           <span class="system-card__kicker">System 01 / 06</span>
@@ -467,6 +566,8 @@
       <span class="se-index">/ 03</span>
       <div class="about-grid">
         <figure class="about-photo">
+          <!-- real photo from the client's own published media library
+               (stradigi.io wp-content), not generated -->
           <img decoding="async" src="assets/img/jason-operator.jpg" alt="Jason Tapolci, founder of Stradigi, standing in front of his framed Inc. 5000 award" width="1400" height="1400" loading="lazy">
           <figcaption>Jason Tapolci, Founder</figcaption>
         </figure>
@@ -499,6 +600,8 @@
       </div>
       <div class="trust-pair">
         <figure class="trust-photo">
+          <!-- real photo from the client's own site: Jason mentoring Noah
+               McCracken at Excel Martial Arts -->
           <img decoding="async" src="assets/img/jason-excel-mentoring.jpg" alt="Jason Tapolci mentoring Noah McCracken at Excel Martial Arts" width="1600" height="1066" loading="lazy">
         </figure>
         <div class="trust-quote">
@@ -516,6 +619,12 @@
           <cite><span class="avatar-chip" style="background:var(--accent-deep);">LA</span> Linda Ahrens, Smart Contractors Inc.</cite>
         </div>
       </div>
+      <!-- Every quote below is carried verbatim, attributed exactly as
+           published on stradigi.io (references/client-existing/wp-extract,
+           page_3641 + system pages). Kevin Redford's entry is excluded per
+           STRADIGI_SOURCE_OF_TRUTH.md §10.6 (staff, undisclosed). The one
+           quote with a number is left out: its attribution conflicts across
+           two pages of the source site. Track is duplicated for the loop. -->
       <div class="trust-marquee" aria-label="More from Stradigi clients">
         <div class="trust-marquee__track">
           <figure class="trust-marquee__item"><blockquote>&ldquo;Now our sales process is clear, our communication is organized, and we finally feel in control again.&rdquo;</blockquote><cite><b>Gina Berardinelli</b> &middot; Quillon Closings</cite></figure>
@@ -535,6 +644,8 @@
     </div>
   </section>
 
+  <!-- CTA beat between proof and pricing: same label as every other
+       booking CTA on the page (one label per intent). -->
   <section class="band3d band3d--plane" data-scene="plane" aria-hidden="true">
     <span class="band3d-ghost">Stradigi</span>
     <div class="band3d-stage"></div>
@@ -600,6 +711,11 @@
         <div class="contact-panel contact-panel--fill">
           <h3>New to Stradigi?</h3>
           <p>Start with a free mentoring session. No pressure, no sales pitch, just a conversation about your business.</p>
+          <!-- BOOKING CALENDAR SLOT: when Jason provides his GoHighLevel
+               calendar embed, it drops in here and the button below becomes
+               the fallback. One iframe, nothing else changes:
+               <iframe src="https://api.leadconnectorhq.com/widget/booking/EMBED_ID"
+                       style="width:100%;min-height:620px;border:none;" id="ghl-booking"></iframe> -->
           <p class="contact-tailored" id="contact-tailored" hidden></p>
           <a class="se-btn" href="https://stradigi.io/contact-us-new/" target="_blank" rel="noopener" data-cursor-label="BOOK">Book a free session</a>
         </div>
@@ -613,10 +729,37 @@
     </div>
   </section>
 
+  <section class="se-section faq" id="faq">
+    <div class="se-container">
+      <div class="se-head">
+        <span class="se-index">/ 07</span>
+        <h2 class="se-heading">Common questions</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>How does an engagement start?</summary>
+          <p>With two to three free mentoring sessions and a full business health assessment, then a personalized growth roadmap. No pressure, no sales pitch.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What does it cost?</summary>
+          <p>Plans run $97, $297, or $397 a month, with no long-term contracts; adjust or cancel anytime. Done-for-you services are quoted per business.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Who will I actually work with?</summary>
+          <p>Jason Tapolci, Stradigi&rsquo;s founder. Mentoring comes first, and the six systems get installed around what the mentoring finds.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Where is Stradigi based?</summary>
+          <p>2400 Ansys Dr, Suite 102, Canonsburg PA. We work with businesses across Canonsburg, Washington County, and Pittsburgh, in person, Monday through Sunday, 9 to 5.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <section class="se-section mark-live" id="mark" aria-label="The Stradigi mark, live">
     <div class="se-container mark-live__grid">
       <div class="mark-live__copy">
-        <span class="se-index">/ 07</span>
+        <span class="se-index">/ 08</span>
         <h2 class="se-heading" style="max-width:12ch;">The machine, assembled.</h2>
         <p class="se-lede">Six systems, one object. Drag to turn it. Come closer and it comes apart.</p>
       </div>
