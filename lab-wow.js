@@ -337,7 +337,19 @@
     });
   }
 
+  /* The four portrait JPGs are lazy so they never compete with the intro
+   * preload on slow connections; once the intro is over, warm them in the
+   * background so the first scroll to Who we help decodes nothing. */
+  function warmPortraits() {
+    ["serve-home", "serve-wellness", "serve-trades", "serve-professional"].forEach(function (n) {
+      var im = new Image();
+      im.decoding = "async";
+      im.src = "assets/img/" + n + ".jpg";
+    });
+  }
+
   function init() {
+    warmPortraits();
     spotlight();
     relayTracker();
     serve();
